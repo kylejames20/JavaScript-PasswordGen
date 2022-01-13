@@ -15,29 +15,40 @@ const numeros = ["0","1","2","3","4","5","6","7","8","9"];
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  
   passwordText.value = password;
-
+  
 }
 function generatePassword() {
+  var passString = "";
+  var passwordItems = [];
+  //we will need an if statement here. if the user types in less than 8/more than 128, re prompt user
   passwordLength = window.prompt("How many characters do you want?");
   lowerCase = window.confirm ("Do you want lower case letters?");
   upperCase = window.confirm ("Do you want upper case letters?");
   numbers = window.confirm("Do you wany numbers?");
   specialChar = window.confirm("Do you want special characters?");
   if (lowerCase == true){
-
+    passwordItems = passwordItems.concat(lowerAbc);
   }
   if(upperCase == true){
-
+    passwordItems = passwordItems.concat(upperAbc);
   }
   if(numbers == true){
-
+    passwordItems = passwordItems.concat(numeros);
   }
   if(specialChar == true){
-    
+    passwordItems = passwordItems.concat(symbols);
   }
+  console.log(passwordItems);
+  console.log(passwordItems[14]);
+  
+  for (let i = 0; i < passwordLength; i++) {
+        passString += passwordItems[
+          Math.floor(Math.random() * passwordItems.length)
+        ];
+      }
+  return passString;
 }
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
