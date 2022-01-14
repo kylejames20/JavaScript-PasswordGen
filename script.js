@@ -16,19 +16,32 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   
-  passwordText.value = password;
+  passwordText.value = password; 
   
+}
+function passwordLengthCheck() {
+    let passwordSize = prompt("How many characters do you want?")
+     if (passwordSize < 8 || passwordSize > 128){
+    alert("Your password must be between 8 - 128 characters.")
+    passwordLengthCheck()
+  } else {return passwordSize}
 }
 function generatePassword() {
   var passString = "";
   var passwordItems = [];
+
+  let passwordLength = passwordLengthCheck()
   //we will need an if statement here. if the user types in less than 8/more than 128, re prompt user
-  passwordLength = window.prompt("How many characters do you want?");
+  // passwordLength = window.prompt("How many characters do you want?");
+  // if (passwordLength < 8 || passwordLength > 128){
+  //   alert("Your password must be between 8 - 128 characters.")
+  //   generatePassword()
+  // }
   lowerCase = window.confirm ("Do you want lower case letters?");
   upperCase = window.confirm ("Do you want upper case letters?");
   numbers = window.confirm("Do you wany numbers?");
   specialChar = window.confirm("Do you want special characters?");
-  if (lowerCase == true){
+if (lowerCase == true){
     passwordItems = passwordItems.concat(lowerAbc);
   }
   if(upperCase == true){
